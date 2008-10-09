@@ -33,7 +33,7 @@ class Node
     def scan(current_node)
       uri = URI.parse(current_node.address)
       if ADDRESS =~ current_node.address
-        address_template = "#{uri.scheme}://#{$1}.#{$2}.#{$3}.%i:#{Merb.config[:scan_port]}/nodes"
+        address_template = "#{uri.scheme}://#{$1}.#{$2}.#{$3}.%i:#{Merb.config[:scan_port]}/nodes?address=#{Rack::Utils.escape(current_node.address)}"
         
         100.upto(120) do |n| # port ranges to test over
           

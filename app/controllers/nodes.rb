@@ -29,7 +29,10 @@ class Nodes < Application
   end
   
   def create
-    puts request.inspect
+    unless node = Node.first(:address => params[:address])
+      node = Node.new(:address => params[:address])
+    end
+    node.save
     
     # case content_type
     # when :html
