@@ -35,7 +35,7 @@ class Node
       if ADDRESS =~ current_node.address
         address_template = "#{uri.scheme}://#{$1}.#{$2}.#{$3}.%i:#{Merb.config[:scan_port]}/"
         path = "nodes"
-        params = {:address => Rack::Utils.escape(current_node.address)}
+        params = {:address => current_node.address}
         
         100.upto(120) do |n| # port ranges to test over
           
