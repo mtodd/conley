@@ -30,6 +30,12 @@ class Node
   
   class << self
     
+    def active
+      self.all(:last_active_at.gt => (Time.now - 60*60*1))
+    end
+    
+    # Scan for other nodes on the same network.
+    # 
     def scan(current_node)
       uri = URI.parse(current_node.address)
       if ADDRESS =~ current_node.address
