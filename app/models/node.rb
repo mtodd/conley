@@ -58,10 +58,12 @@ class Node
             end
           rescue Errno::ECONNREFUSED => e
             Merb.logger.debug("Connection refused to #{address}.")
+          rescue Errno::EHOSTUNREACH => e
+            Merb.logger.debug("Host unreachable for #{address}.")
           rescue Errno::ETIMEDOUT => e
-            Merb.logger.debug("Failed to match on #{address}.")
-          rescue Timeout::Error => e
             Merb.logger.debug("#{address} timed out.")
+          rescue Timeout::Error => e
+            Merb.logger.debug("Failed to match on #{address}.")
           end
           
         end
