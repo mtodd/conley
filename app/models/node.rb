@@ -36,8 +36,10 @@ class Node
     
     # Scan for other nodes on the same network.
     # 
-    def scan(current_node)
+    def scan(current_node, options = {})
+      options = {:continual => true}.merge(options)
       uri = URI.parse(current_node.address)
+      
       if ADDRESS =~ current_node.address
         address_template = "#{uri.scheme}://#{$1}.#{$2}.#{$3}.%i:#{Merb.config[:scan_port]}/"
         path = "nodes"
@@ -73,6 +75,17 @@ class Node
           end
           
         end
+      end
+      
+      if options[:continual]
+        sleep 60*5
+        self.detach_and_scan(current_node)
+      end
+    end
+    
+    def detach_and_scan(current_node)
+      Thread.new do
+        self.scan(current_node)
       end
     end
     

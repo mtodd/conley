@@ -3,7 +3,7 @@ class Nodes < Application
   provides :json
   
   def index
-    @nodes = Node.all
+    @nodes = Node.active.all
     
     case content_type
     when :html
@@ -16,9 +16,7 @@ class Nodes < Application
   # Begin scanning for other nodes.
   # 
   def scan
-    @scanner = Thread.new do
-      Node.scan(current_node)
-    end
+    Node.detach_and_scan(current_node)
     
     case content_type
     when :html
