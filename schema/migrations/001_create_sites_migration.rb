@@ -1,11 +1,16 @@
 migration 2, :create_sites  do
   
   up do
-    Site.auto_migrate!
+    create_table :sites do
+      column :id, Integer, :serial => true
+      column :url, String
+      column :created_at, DateTime
+      column :updated_at, DateTime
+    end
   end
 
   down do
-    Site.auto_migrate!
+    drop_table :sites
   end
   
 end

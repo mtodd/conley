@@ -1,11 +1,17 @@
 migration 4, :create_nodes  do
   
   up do
-    Node.auto_migrate!
+    create_table :nodes do
+      column :id, Integer, :serial => true
+      column :address, String
+      column :last_active_at, DateTime
+      column :created_at, DateTime
+      column :updated_at, DateTime
+    end
   end
   
   down do
-    Node.auto_migrate!
+    drop_table :nodes
   end
   
 end
