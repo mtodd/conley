@@ -5,6 +5,8 @@ class Site
   
   property :id, Serial
   property :url, String
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
   ### Associations
   

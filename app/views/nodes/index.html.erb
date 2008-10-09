@@ -1,0 +1,5 @@
+<ul>
+  <% @nodes.each do |node| %>
+    <li><%= node.address %> (<%= node.last_active_at.strftime("%Y-%m-%d %H:%I:%S") %>)</li>
+  <% end %>
+</ul>
