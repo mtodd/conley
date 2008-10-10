@@ -34,6 +34,14 @@ class Node
       self.all(:last_active_at.gt => (Time.now - 60*60*1))
     end
     
+    def inactive
+      self.all(:last_active_at.lt => (Time.now - 60*60*1))
+    end
+    
+    def purge
+      self.all.destroy!
+    end
+    
     # Scan for other nodes on the same network.
     # 
     def scan(current_node, options = {})
