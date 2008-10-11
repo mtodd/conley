@@ -48,9 +48,8 @@ class Site
     def update_from(nodes)
       nodes.each do |node|
         next if node == Node.current
-        puts node.inspect
         node.query_sites.each do |remote_site|
-          unless site = current_node.sites.first(:url => remote_site[:url])
+          unless site = Site.first(:url => remote_site[:url])
             site = Site.new(:url => remote_site[:url])
             site.save
           end
