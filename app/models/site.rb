@@ -52,6 +52,7 @@ class Site
       nodes.each do |node|
         next if node == Node.current
         node.query_sites.each do |remote_site|
+          remote_site = remote_site.to_mash
           unless site = Site.first(:url => remote_site[:url])
             site = Site.new(:url => remote_site[:url])
             site.save
