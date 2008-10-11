@@ -34,6 +34,7 @@ class Node
   def query_sites
     http = Resourceful::HttpAccessor.new
     response = http.resource(self.address+'sites.json').get
+    Merb.logger.debug "Found: #{response.inspect}"
     JSON.parse(response.body)
   rescue IOError => e
     []
