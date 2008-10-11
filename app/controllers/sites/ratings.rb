@@ -5,7 +5,8 @@ class Sites < Application
     
     def index
       if params[:site_id].to_i == 0 and params[:url]
-        if site = Site.first(:url => params[:url])
+        Merb.logger.debug "Requesting by URL... #{params[:url]}"
+        unless site = Site.first(:url => params[:url])
           site = Site.new(:url => params[:url])
           site.save
         end
