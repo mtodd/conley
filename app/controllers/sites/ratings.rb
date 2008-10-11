@@ -4,8 +4,6 @@ class Sites < Application
     provides :json
     
     def index
-      puts params.inspect
-      
       unless site = Site.first(:id => params[:site_id]) or Site.first(:url => params[:site_id])
         site = Site.new(:url => params[:site_id])
         site.save
