@@ -9,7 +9,7 @@ class Sites < Application
       @sites = Site.all
       render
     when :json
-      display Site.all.to_a.to_json
+      render Site.all.to_a.to_json
     end
   end
   
