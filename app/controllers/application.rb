@@ -8,6 +8,7 @@ class Application < Merb::Controller
       @current_node = Node.new(:address => address)
       @current_node.save
     end
+    Node.current ||= @current_node
     @current_node
   end
   

@@ -1,1 +1,15 @@
-You're in index of the Sites controller.
+<%= partial "sites/new" %>
+
+<div class="spacer">&nbsp;</div>
+<hr />
+<div class="spacer">&nbsp;</div>
+
+<ul>
+  <% @sites.each do |site| %>
+    <li>
+      <%= site.url %>
+      <% if site.average_rating > 0 %>(<%= site.average_rating %>)<% end %>
+      <%= partial "sites/ratings/new", :with => site, :as => :site %>
+    </li>
+  <% end %>
+</ul>

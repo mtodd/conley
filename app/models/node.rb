@@ -1,11 +1,14 @@
 require 'uri'
 require 'net/http'
 require 'timeout'
+require 'json'
 
 class Node
   include DataMapper::Resource
   
   ADDRESS = %r{http://(\d+)\.(\d+)\.(\d+)\.(\d+):(\d+)/}
+  
+  cattr_accessor :current
   
   ### Properties
   
@@ -18,12 +21,28 @@ class Node
   ### Associations
   
   has n, :ratings
-  has n, :sites
+  # has n, :sites, :through => Rating
   
   ### Hooks
   
   before :save do
     self.last_active_at = Time.now
+  end
+  
+  ### Methods
+  
+  def query_sites
+    http = Resourceful::HttpAccessor.new
+    response = http.resource(self.address+'sites.json').get
+    JSON.parse(response.body)
+  rescue IOError => e
+    []
+  end
+  
+  def query_ratings_for(site)
+    http = Resourceful::HttpAccessor.new
+    response = http.resource(self.address+"sites/#{Rack::Utils.escape(site.url)}/ratings.json").get
+    JSON.parse(response.body)
   end
   
   ### Class Methods

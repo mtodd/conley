@@ -1,0 +1,10 @@
+<% if site.ratings.empty? %>
+  <form action="" method="post" style="display:inline;">
+    <input type="hidden" name="rating" value="1" />
+    <input type="submit" value="+1" />
+  </form>
+  <form action="" method="post" style="display:inline;">
+    <input type="hidden" name="rating" value="0" />
+    <input type="submit" value="-1" />
+  </form>
+<% end %>

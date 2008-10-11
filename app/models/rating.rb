@@ -15,4 +15,10 @@ class Rating
   belongs_to :node
   belongs_to :site
   
+  ### Methods
+  
+  def to_json
+    self.attributes.to_json
+  end
+  
 end
