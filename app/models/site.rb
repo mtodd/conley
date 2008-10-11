@@ -22,8 +22,9 @@ class Site
       self.query_ratings.each do |ratings|
         ratings = [ratings] unless ratings.is_a?(Array)
         ratings.each do |rating|
+          puts "RATING: #{rating.inspect}"
           total_ratings += 1
-          average_rating += rating.rating rescue rating['rating']
+          average_rating += (rating.rating rescue rating['rating'])
         end
       end
       average_rating / total_ratings.to_f

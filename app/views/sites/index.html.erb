@@ -9,7 +9,7 @@
     <li>
       <div class="padded medium">
         <a href="<%= site.url %>"><%= site.url %></a>
-        <% if site.average_rating > 0 %>(<%= site.average_rating %>)<% end %>
+        <%= partial "sites/ratings/rating", :with => site.average_rating %>
         <%= partial "sites/ratings/new", :with => site, :as => :site %>
       </div>
     </li>

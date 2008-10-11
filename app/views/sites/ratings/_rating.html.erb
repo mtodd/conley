@@ -1,0 +1,3 @@
+<% if rating and !rating.nan? %>
+  (<%= colorize_rating(rating, "#{(rating * 100).to_i}%") %>)
+<% end %>
