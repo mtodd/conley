@@ -4,13 +4,13 @@ class Sites < Application
     provides :json
     
     def index
-      if params[:url] == 0 and params[:url]
+      if params[:site_id] == 0 and params[:url]
         if site = Site.first(:url => params[:url])
           site = Site.new(:url => params[:url])
           site.save
         end
       else
-        site = Site.get(params[:id])
+        site = Site.get(params[:site_id])
       end
       
       @ratings = site.ratings
