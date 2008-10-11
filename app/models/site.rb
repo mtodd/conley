@@ -17,13 +17,16 @@ class Site
   
   def average_rating
     @average_rating ||= begin
-      ratings = 0
+      total_ratings = 0
       average_rating = 0.0
-      self.query_ratings.each do |rating|
-        ratings += 1
-        average_rating += rating.rating
+      self.query_ratings.each do |ratings|
+        ratings = [ratings] unless ratings.is_a?(Array)
+        ratings.each do |rating|
+          total_ratings += 1
+          average_rating += rating.rating
+        end
       end
-      average_rating / ratings.to_f
+      average_rating / total_ratings.to_f
     end
   end
   
