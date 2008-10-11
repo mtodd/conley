@@ -42,7 +42,7 @@ class Node
   
   def query_ratings_for(site)
     http = Resourceful::HttpAccessor.new
-    response = http.resource(self.address+"sites/#{Rack::Utils.escape(site.url)}/ratings.json").get
+    response = http.resource(self.address+"sites/0/ratings.json?url=#{Rack::Utils.escape(site.url)}").get
     response = JSON.parse(response.body)
     Merb.logger.debug "Found: #{response.inspect}"
     response

@@ -4,9 +4,11 @@ class Sites < Application
     provides :json
     
     def index
-      unless site = Site.first(:id => params[:site_id]) or Site.first(:url => params[:site_id])
-        site = Site.new(:url => params[:site_id])
-        site.save
+      if params[:site_url] == 0 and params[:url]
+        if site = Site.first(:url => params[:url])
+          site = Site.new(:url => params[:url])
+          site.save
+        end
       end
       
       @ratings = site.ratings

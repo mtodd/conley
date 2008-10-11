@@ -31,7 +31,6 @@ Merb::Router.prepare do
   
   resources :sites do
     resources :ratings, :controller => 'sites/ratings'
-    match("/:url/ratings(/index)").to(:url => /.*/, :controller => 'sites/ratings', :action => 'index')
   end
   
   match("/nodes/scan").to(:controller => "nodes", :action => "scan").name(:scan_nodes)
@@ -45,4 +44,5 @@ Merb::Router.prepare do
   
   # Change this for your home page to be available at /
   # match('/').to(:controller => 'whatever', :action =>'index')
+  
 end
