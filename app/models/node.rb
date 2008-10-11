@@ -42,8 +42,9 @@ class Node
   def query_ratings_for(site)
     http = Resourceful::HttpAccessor.new
     response = http.resource(self.address+"sites/#{Rack::Utils.escape(site.url)}/ratings.json").get
-    puts response.body
-    JSON.parse(response.body)
+    response = JSON.parse(response.body)
+    Merb.logger.debug "Found: #{response.inspect}"
+    response
   end
   
   ### Class Methods
@@ -73,7 +74,7 @@ class Node
         path = "nodes"
         params = {:address => current_node.address}
         
-        100.upto(120) do |n| # port ranges to test over
+        10.upto(240) do |n| # port ranges to test over
           
           address = address_template % n
           Merb.logger.debug("Scanning #{address}...")
