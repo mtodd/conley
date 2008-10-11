@@ -18,19 +18,19 @@ class Site
   def average_rating
     @average_rating ||= begin
       ratings = 0
-      rating = 0.0
+      average_rating = 0.0
       self.query_ratings.each do |rating|
         ratings += 1
-        rating += rating.rating
+        average_rating += rating.rating
       end
-      rating / ratings.to_f
+      average_rating / ratings.to_f
     end
   end
   
   def query_ratings
     Node.active.all.map do |node|
-      unless node == Node.current
-        current_node.ratings.first
+      if node == Node.current
+        node.ratings.first(:site_id => self.id)
       else
         node.query_ratings_for(self)
       end

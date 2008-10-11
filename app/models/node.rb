@@ -42,6 +42,7 @@ class Node
   def query_ratings_for(site)
     http = Resourceful::HttpAccessor.new
     response = http.resource(self.address+"sites/#{Rack::Utils.escape(site.url)}/ratings.json").get
+    puts response.body
     JSON.parse(response.body)
   end
   

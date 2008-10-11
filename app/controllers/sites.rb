@@ -14,8 +14,6 @@ class Sites < Application
   end
   
   def create
-    puts "HI!"
-    
     unless site = Site.first(:url => params[:url])
       site = Site.new(:url => params[:url])
       site.save
