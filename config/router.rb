@@ -30,10 +30,11 @@ Merb::Router.prepare do
   # RESTful routes
   
   resources :sites do
-    resources :ratings
+    resources :ratings, :controller => 'sites/ratings'
+    match("/:url/ratings").to(:url => /.*/, :controller => 'sites/ratings')
   end
   
-  match("/nodes/scan").to(:controller => "nodes", :action => "scan")
+  match("/nodes/scan").to(:controller => "nodes", :action => "scan").name(:scan_nodes)
   resources :nodes
   
   # This is the default route for /:controller/:action/:id

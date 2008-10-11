@@ -1,9 +1,9 @@
 <% if site.ratings.empty? %>
-  <form action="" method="post" style="display:inline;">
+  <form action="<%= url(:site_ratings, :site_id => site.id) %>" method="post" style="display:inline;">
     <input type="hidden" name="rating" value="1" />
     <input type="submit" value="+1" />
   </form>
-  <form action="" method="post" style="display:inline;">
+  <form action="<%= url(:site_ratings, :site_id => site.id) %>" method="post" style="display:inline;">
     <input type="hidden" name="rating" value="0" />
     <input type="submit" value="-1" />
   </form>

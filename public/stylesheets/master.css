@@ -117,3 +117,13 @@ a:hover {
 #main-container ul {
   margin-left: 3.0em;
 }
+
+.padded.light {
+  padding: 0.25em;
+}
+.padded.medium {
+  padding: 0.5em;
+}
+.padded.heavy {
+  padding: 1em;
+}

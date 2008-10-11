@@ -29,8 +29,11 @@ class Site
   
   def query_ratings
     Node.active.all.map do |node|
-      next if node == Node.current
-      node.query_ratings_for(site)
+      unless node == Node.current
+        current_node.ratings.first
+      else
+        node.query_ratings_for(self)
+      end
     end.compact
   end
   

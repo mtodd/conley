@@ -7,9 +7,11 @@
 <ul>
   <% @sites.each do |site| %>
     <li>
-      <%= site.url %>
-      <% if site.average_rating > 0 %>(<%= site.average_rating %>)<% end %>
-      <%= partial "sites/ratings/new", :with => site, :as => :site %>
+      <div class="padded medium">
+        <a href="<%= site.url %>"><%= site.url %></a>
+        <% if site.average_rating > 0 %>(<%= site.average_rating %>)<% end %>
+        <%= partial "sites/ratings/new", :with => site, :as => :site %>
+      </div>
     </li>
   <% end %>
 </ul>
