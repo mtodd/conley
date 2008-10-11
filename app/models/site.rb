@@ -23,7 +23,7 @@ class Site
         ratings = [ratings] unless ratings.is_a?(Array)
         ratings.each do |rating|
           total_ratings += 1
-          average_rating += rating.rating
+          average_rating += rating.rating rescue rating['rating']
         end
       end
       average_rating / total_ratings.to_f
