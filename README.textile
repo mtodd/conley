@@ -1,0 +1,41 @@
+h1. Conley
+
+h2. Mesh Application
+
+Conley is a really simple way to share "votes" on sites (well, just URLs).
+
+It works by maintaining an list of "active" nodes and asks them their opinion
+on a URL that the user has on his app (or a community, for a better idea of
+how this idea could be designed).
+
+h2. Note
+
+There's a lot of bad design in here... I know that. It happens. Time was not on
+my side while developing this so don't be too critical of pointless things like
+ratings being in an Integer column but only being 0 or 1 (Boolean of course
+would've made more sense).
+
+*WARNING*: I made this using 0.9.8 so some things (like dm:db:migrate) doesn't
+work for stuff right out of edge. I hope to update the application later
+because I do like the idea, but it's just not a priority before the end of
+MerbCamp.
+
+h2. Installation
+
+rake dm:db:migrate
+merb -p 8482
+
+Then, start the scan process by pulling up the page and clicking on "scan" next
+to the Nodes list.
+
+Obviously, you'll want to have other participating computers on the network
+setup the application too or start it on a port that isn't 8482 (8481 for
+instance) and also one on 8482. That way you can be both apps.
+
+But it's more fun with two people. :)
+
+h2. License & Copyright
+
+(c) 2008 Matt Todd.
+
+http://www.opensource.org/licenses/mit-license.php
